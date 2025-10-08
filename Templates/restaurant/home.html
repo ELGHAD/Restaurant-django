@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home | Little Lemon{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-text">
+    <h1>Welcome to Little Lemon</h1>
+    <p>Fresh Mediterranean flavors crafted with love in every dish.</p>
+    <a href="{% url 'menu' %}" class="btn-primary">View Menu</a>
+  </div>
+  <div class="hero-image">
+    <img src="{% static 'hero-lemon.jpg' %}" alt="Little Lemon Restaurant">
+  </div>
+</section>
+{% endblock %}

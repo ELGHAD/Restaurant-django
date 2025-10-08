@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ item.name }} | Little Lemon{% endblock %}
+{% block content %}
+<a href="{% url 'menu' %}" class="breadcrumb">← Back to Menu</a>
+<div class="menu-detail">
+  {% if item.image %}
+    <img src="{{ item.image.url }}" alt="{{ item.name }}" class="detail-img">
+  {% endif %}
+  <div class="detail-text">
+    <h1>{{ item.name }}</h1>
+    <p class="detail-price">${{ item.price }}</p>
+    <p>{{ item.description }}</p>
+  </div>
+</div>
+{% endblock %}
