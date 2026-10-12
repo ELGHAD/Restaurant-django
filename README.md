@@ -1,130 +1,248 @@
-# 🍋 Little Lemon — Restaurant Website (Django)
+# Little Lemon — Restaurant Website
 
-> Un site vitrine pour restaurant construit avec **Django** : menu dynamique piloté par base de données, panneau d'administration natif pour la gestion des plats, et interface responsive en CSS pur.
+A Django-powered restaurant website featuring a database-driven menu, individual dish pages, image management, a customized administration interface, and responsive styling.
 
-![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=flat&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=flat&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-5.x-092E20?style=flat&logo=django&logoColor=white)
 ![SQLite](https://img.shields.io/badge/Database-SQLite-07405E?style=flat&logo=sqlite&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Portfolio%20Project-blue)
-![License](https://img.shields.io/badge/License-Not%20specified-lightgrey)
+![Frontend](https://img.shields.io/badge/Frontend-HTML%20%7C%20CSS-E34F26?style=flat&logo=html5&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Portfolio%20Project-blue?style=flat)
+![License](https://img.shields.io/badge/License-Not%20specified-lightgrey?style=flat)
 
----
+## Overview
 
-## 📖 Aperçu du projet
+Little Lemon is a restaurant website built with Django, demonstrating how a server-rendered web application can manage and display content stored in a relational database.
 
-**Little Lemon** est une application web de démonstration développée avec Django, illustrant une architecture **MVT (Model-View-Template)** propre et idiomatique. Le projet répond à un besoin simple mais courant : offrir à un restaurant une vitrine web où le menu est géré dynamiquement depuis une base de données plutôt que codé en dur dans le HTML.
+Instead of hardcoding menu items into HTML, the application uses Django models and the ORM to retrieve dish information dynamically. The built-in Django administration interface allows authorized staff to manage menu content without directly modifying application code.
 
-Il s'adresse principalement aux recruteurs techniques et développeurs souhaitant évaluer une implémentation Django claire (modèles, vues génériques basées sur les classes, gestion des médias, back-office admin) plutôt qu'une application de production à grande échelle.
+The project demonstrates core Django development practices, including the Model-View-Template (MVT) architecture, reusable templates, class-based views, media handling, and database migrations.
 
-## ✨ Fonctionnalités clés
+## Features
 
-- 🍽️ **Menu dynamique** — les plats (nom, prix, description, image) sont stockés en base et affichés via une `ListView` Django, avec tri alphabétique automatique.
-- 🔍 **Pages de détail** — chaque plat dispose de sa propre page (`DetailView`) accessible depuis la grille du menu.
-- 🖼️ **Gestion des images** — upload et affichage des photos de plats via `ImageField` et le système de fichiers médias de Django.
-- 🛠️ **Panneau d'administration** — interface `django.contrib.admin` personnalisée (colonnes affichées, recherche par nom) pour ajouter/modifier/supprimer les plats sans toucher au code.
-- 📄 **Pages statiques** — Accueil, À propos et Réservation (coordonnées du restaurant).
-- 🎨 **UI responsive sur-mesure** — mise en page et style entièrement en CSS custom (pas de dépendance à un framework front-end lourd), avec une charte visuelle cohérente (header, hero, cartes menu, footer).
-- 🧱 **Templates réutilisables** — héritage de templates Django (`base.html` + blocks) pour éviter la duplication de markup.
+### Dynamic Menu
 
-## 🏗️ Architecture & Stack technique
+- Display menu items retrieved from the database.
+- Sort menu items alphabetically.
+- Show dish information, including names, descriptions, prices, and images.
+- Provide individual detail pages for menu items.
 
-Le projet suit l'architecture **MVT** native de Django (équivalent du MVC côté serveur).
+### Image Management
 
-| Couche | Technologie | Rôle |
-|---|---|---|
-| **Backend** | Django 5 (Python) | Routing, logique métier, ORM |
-| **Base de données** | SQLite | Stockage des plats du menu (adapté au contexte démo/dev) |
-| **Templates** | Django Template Language | Rendu HTML côté serveur, héritage de templates |
-| **Styles** | CSS custom (`static/styles.css`) | Mise en page responsive, sans framework CSS |
-| **Médias** | `django.db.models.ImageField` + Pillow | Upload et service des images de plats |
-| **Admin** | Django Admin | Back-office de gestion du menu |
+- Store dish images using Django's `ImageField`.
+- Process uploaded images with Pillow.
+- Display uploaded media in menu listings and detail pages.
 
-**Structure applicative :**
-- `littlelemon/` — configuration du projet (settings, routing racine, WSGI/ASGI)
-- `restaurant/` — application métier (modèles, vues, admin, migrations)
-- `Templates/` — templates HTML globaux
-- `static/` — assets CSS
-- `media/` — images uploadées (menu)
+### Administration Dashboard
 
-## 🚀 Guide d'installation & Démarrage rapide
+- Manage menu items through Django Admin.
+- Customize the displayed columns and search behavior.
+- Add, edit, and delete menu entries without changing application code.
 
-### Prérequis
-- Python 3.10+
-- pip
+### Restaurant Information
 
-### Étapes
+- Homepage introducing the restaurant.
+- About page with restaurant information.
+- Reservation page displaying contact information.
 
-```bash
-# 1. Cloner le dépôt
-git clone https://github.com/ELGHAD/Restaurant-django.git
-cd Restaurant-django
+The reservation page is informational; a complete reservation booking workflow is not currently implemented.
 
-# 2. Créer et activer un environnement virtuel
-python -m venv venv
-source venv/bin/activate      # Windows : venv\Scripts\activate
+### Responsive Interface
 
-# 3. Installer les dépendances
-pip install django pillow
+- Custom CSS styling without a heavy frontend framework.
+- Reusable page layouts with Django template inheritance.
+- Shared navigation, content sections, and footer elements.
 
-# 4. Appliquer les migrations
-python manage.py migrate
+## Technology Stack
 
-# 5. Créer un compte administrateur
-python manage.py createsuperuser
+| Technology | Purpose |
+|---|---|
+| Python | Backend language |
+| Django 5.x | Web framework |
+| Django ORM | Database access and model management |
+| SQLite | Development database |
+| Django Template Language | Server-side HTML rendering |
+| Django Admin | Menu administration |
+| HTML5 | Page structure |
+| CSS3 | Responsive styling |
+| Pillow | Image processing and image uploads |
 
-# 6. Lancer le serveur de développement
-python manage.py runserver
+## Architecture
+
+The application follows Django's Model-View-Template architecture.
+
+```text id="f82t2k"
+Browser
+   |
+   v
+URL Routing
+   |
+   v
+Django Views
+   |
+   +-------------------+
+   |                   |
+   v                   v
+Django Models      Templates
+   |
+   v
+Django ORM
+   |
+   v
+SQLite Database
+
+Django Admin
+   |
+   v
+Menu Management
 ```
 
-L'application est ensuite accessible sur `http://127.0.0.1:8000/`, et le back-office sur `http://127.0.0.1:8000/admin/`.
+### Main Components
 
-> ⚠️ Le dépôt ne contient pas de fichier `requirements.txt` : `django` et `pillow` (nécessaire pour `ImageField`) sont les dépendances minimales à installer manuellement.
+- **Models:** Define menu items and their stored attributes.
+- **Views:** Retrieve menu data and prepare responses.
+- **Templates:** Render the homepage, menu listing, and dish details.
+- **Admin:** Provides an administration interface for authorized users.
+- **Static files:** Store custom CSS and other frontend assets.
+- **Media files:** Store uploaded dish images during development.
 
-## 📂 Structure du projet
+## Project Structure
 
-```
+```text id="q29g8v"
 Restaurant-django/
-├── littlelemon/            # Configuration du projet Django
+├── littlelemon/
 │   ├── settings.py
 │   ├── urls.py
-│   └── wsgi.py / asgi.py
-├── restaurant/              # Application principale
-│   ├── models.py            # Modèle MenuItem
-│   ├── views.py              # Vues fonction + génériques (List/Detail)
-│   ├── admin.py               # Personnalisation de l'admin
+│   ├── wsgi.py
+│   └── asgi.py
+├── restaurant/
+│   ├── models.py
+│   ├── views.py
+│   ├── admin.py
 │   ├── urls.py
 │   └── migrations/
-├── Templates/                # Templates HTML (base + pages)
+├── Templates/
 │   └── restaurant/
-├── static/                    # Fichiers CSS
-├── media/menu_images/          # Images des plats uploadées
+├── static/
+├── media/
+│   └── menu_images/
 └── manage.py
 ```
 
-## 🔐 Sécurité & bonnes pratiques
+## Getting Started
 
-- **ORM Django** pour toutes les requêtes en base — protection native contre les injections SQL.
-- **Middleware CSRF** activé par défaut sur les formulaires.
-- **Accès admin restreint** aux comptes staff/superutilisateur via `django.contrib.admin`.
-- **Vues génériques basées sur les classes** (`ListView`, `DetailView`) pour un code concis et testable.
+### Prerequisites
 
-**Points à adresser avant un déploiement en production** *(configuration actuelle héritée du mode développement)* :
-- `SECRET_KEY` codée en dur et `DEBUG = True` dans `settings.py` — à externaliser via variables d'environnement.
-- `ALLOWED_HOSTS` vide — à configurer pour l'hôte de production.
-- SQLite convient au développement, mais une base plus robuste (PostgreSQL, par ex.) est recommandée en production.
+- Python 3.10 or later, compatible with the installed Django version.
+- pip
+- A terminal or IDE
 
-## 🗺️ Pistes d'évolution
+### 1. Clone the Repository
 
-- Formulaire de réservation fonctionnel (actuellement une page informative statique).
-- API REST (Django REST Framework) pour exposer le menu à un front-end découplé.
-- Authentification utilisateur côté visiteur (comptes clients, historique de réservation).
-- Tests unitaires (`restaurant/tests.py` est actuellement vide).
+```bash id="2ujl2u"
+git clone https://github.com/ELGHAD/Restaurant-django.git
+cd Restaurant-django
+```
 
-## 👤 Auteur & Contact
+### 2. Create a Virtual Environment
+
+```bash id="h9ed92"
+python -m venv venv
+```
+
+Activate it on Linux or macOS:
+
+```bash id="h9ed93"
+source venv/bin/activate
+```
+
+On Windows:
+
+```powershell id="h9ed94"
+venv\Scripts\activate
+```
+
+### 3. Install Dependencies
+
+If the repository does not include a `requirements.txt` file, install the required packages manually:
+
+```bash id="h9ed95"
+python -m pip install "Django>=5.0,<6.0" Pillow
+```
+
+For a reproducible setup, pin the versions that have been tested with the project and save them in a `requirements.txt` file.
+
+### 4. Apply Database Migrations
+
+```bash id="h9ed96"
+python manage.py migrate
+```
+
+### 5. Create an Administrator Account
+
+```bash id="h9ed97"
+python manage.py createsuperuser
+```
+
+Follow the prompts to configure the administrator credentials.
+
+### 6. Run the Development Server
+
+```bash id="h9ed98"
+python manage.py runserver
+```
+
+Open the application at:
+
+- Website: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- Admin dashboard: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+
+Uploaded images and their display depend on the project's media configuration. Django's development server is intended for local development, not production hosting.
+
+## Security and Development Practices
+
+The project uses several standard Django mechanisms:
+
+- **ORM-based queries:** Use Django's ORM for database access rather than manually constructing SQL queries.
+- **CSRF protection:** Django's standard CSRF middleware protects applicable form submissions.
+- **Admin access control:** Django Admin restricts access to appropriately authorized staff users.
+- **Class-based views:** `ListView` and `DetailView` reduce repetitive code for listing and displaying menu items.
+- **Template inheritance:** Shared layouts help maintain consistent page structure.
+- **Database migrations:** Track and apply database schema changes.
+
+### Production Considerations
+
+The current development configuration needs to be hardened before deployment:
+
+- Move `SECRET_KEY` into an environment variable and ensure it is not exposed in source control.
+- Set `DEBUG = False` in production.
+- Configure `ALLOWED_HOSTS` for the intended deployment domain.
+- Configure static and uploaded media file serving appropriately.
+- Review file upload validation, size limits, and storage permissions.
+- Consider PostgreSQL for a production deployment requiring more robust database operations.
+
+## Current Limitations
+
+This project is a restaurant website demonstration rather than a complete restaurant management platform.
+
+- The reservation page is informational and does not implement a full booking workflow.
+- No customer authentication or reservation history is documented.
+- Automated tests need to be added for menu views and application behavior.
+- A dependency lock or pinned requirements file should be added for reproducible installation.
+- Production deployment and media storage require additional configuration.
+
+## Potential Improvements
+
+1. Implement a reservation form with availability validation and booking persistence.
+2. Add automated tests for models, views, routes, and admin behavior.
+3. Add search and category filtering to the menu.
+4. Introduce Django REST Framework to expose a menu API.
+5. Move configuration to environment variables.
+6. Add deployment documentation and a production-ready static/media strategy.
+7. Configure continuous integration to run tests automatically.
+
+## Author
 
 **Hamza Elrhadiouini**
-Étudiant Ingénieur en Génie Logiciel (MIAGE) — EMSI Rabat
 
-- 💻 GitHub : [@ELGHAD](https://github.com/ELGHAD)
-- 🌐 Portfolio : [elghad.github.io/hamza-elrhadiouini-portfolio](https://elghad.github.io/hamza-elrhadiouini-portfolio)
-- 📧 Email : [hamelrhadiouini@gmail.com](mailto:hamelrhadiouini@gmail.com)
+- GitHub: [@ELGHAD](https://github.com/ELGHAD)
+- Portfolio: [elghad.github.io/hamza-elrhadiouini-portfolio](https://elghad.github.io/hamza-elrhadiouini-portfolio)
